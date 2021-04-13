@@ -1,23 +1,61 @@
 .wrapper {
   display: flex;
+  /* 
+    Direction 
+    Row
+      Main Axis : Horizontal
+      Cross Axis : Vertical
+    Column
+      Main Axis : Vertical
+      Cross Axis : Horizontal
+  */
+  flex-direction: row;
+
   /* Main Axis */
   justify-content: space-around;
+  
+  /* Cross Axis */
+  align-items: center;
+  
   height: 100vh;
   font-size: 50px;
+  /* Default flex-wrap is nowrap */
+  /* nowrap일 때 screen width를 초과할 수 없기에 flex box의 width가 줄어든다. */
+  /* wrap일 때 screen width를 초과하면 flex box는 아래칸으로 떨어진다. */
+  /* flex-wrap: wrap; */
 }
 
 .child {
-  width: 200px;
+  width: 300px;
   height: 200px;
   background: peru;
   color: white;
-}
-
-.child:nth-child(1) {
-  order: 2;
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .child:nth-child(2) {
-  order: 3;
+  /* 
+    flex에서 자식에 적용할 수 있는 두가지 속성 
+    order :
+      기본 값은 0이며 order에 부여한 값의 순서에 따라 item이 정렬된다.
+    align-self : 
+      align-items와 같은 역할을 하며 cross axis 기준 정렬을 수행한다.
+  */
+  /* Default order is 0 */
+  /* order: 2; */
+  align-self: center;
+  background: violet;
+}
+
+.child:nth-child(3) {
+  /* Default flex-shrink is 1 */
+  /* flex-wrap이 nowrap일 때 flex-shrink 숫자가 커질 수록 더 밀도 있게 축소됨. */
+  /* flex-shrink: 2; */
+
+  /* Default flex-grow is 0 */
+  /* flex-wrap이 nowrap일 때 flex-grow 숫자가 커질 수록 더 크게 확장됨. */
+  /* flex-grow가 0인 item을 제외하고 남은 width를 flex-grow 값에 따라 나눠 갖는다. */
+  /* flex-grow: 2; */
 }
