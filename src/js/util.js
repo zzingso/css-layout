@@ -5,14 +5,7 @@ export const loadPartials = () => {
   Array.prototype.forEach.call(allElements, function(el) {
       const includePath = el.dataset.includeHtml;
       if (includePath) {
-          const xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function () {
-              if (this.readyState == 4 && this.status == 200) {
-                  el.outerHTML = this.responseText;
-              }
-          };
-          xhttp.open('GET', includePath, true);
-          xhttp.send();
+        loadHtml(el, includePath);
       }
   });
 }
@@ -22,15 +15,19 @@ export const menuClickHandler = (e) => {
   const eventTarget = e.target;
   const dataset = eventTarget.dataset;
 
-  const link = dataset.link;
-  if(link) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          main.outerHTML = this.responseText;
-        }
-    };
-    xhttp.open('GET', link, true);
-    xhttp.send();
+  const includePath = dataset.includeLink;
+  if(includePath) {
+    loadHtml(main, includePath);
   }
+}
+
+const loadHtml = (el, path) => {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+          el.outerHTML = this.responseText;
+      }
+  };
+  xhttp.open('GET', path, true);
+  xhttp.send();
 }
