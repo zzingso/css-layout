@@ -1,6 +1,4 @@
-import { random } from "./util";
+import { loadPartials, menuClickHandler } from "./util";
 
-const rOne = random(10);
-const rTwo = random(20);
-
-console.log(`${rOne} ${rTwo}`);
+window.addEventListener('load',  loadPartials);
+document.addEventListener('click', menuClickHandler);
